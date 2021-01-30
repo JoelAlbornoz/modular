@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebSocketService } from 'src/app/services/web-sockets.service';
 import { FetchService } from '../../services/fetch.service'
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { FetchService } from '../../services/fetch.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private fetch : FetchService) { }
+  constructor(private fetch : FetchService, private WebSocketService: WebSocketService) { }
 
   ngOnInit(): void {
     this.fetch.conectar()

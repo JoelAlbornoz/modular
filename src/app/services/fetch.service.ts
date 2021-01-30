@@ -15,6 +15,4 @@ export class FetchService {
     console.log("finalizado")
   })
   }
-
-
 }
