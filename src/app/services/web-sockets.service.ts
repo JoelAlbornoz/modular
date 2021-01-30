@@ -1,5 +1,5 @@
 import { Injectable, ɵɵresolveBody } from '@angular/core';
-import {io} from 'socket.io-client'
+import * as io from 'socket.io-client'
 
 
 @Injectable({
@@ -8,16 +8,21 @@ import {io} from 'socket.io-client'
 export class WebSocketService {
   
   url='https://modular-0-0-1.glitch.me/';
-   socket = io(this.url, {
-    withCredentials: true,
-    extraHeaders: {
-      "my-custom-header": "abcd"
-    }});
+   socket : any;
+   elementsGroup:any = [];
+   id : any;
+   htmlEls =[]
+   messages= [{nombre:'administrador', mensaje:'intenta moverte con las flechas'},{nombre:'administrador', mensaje:'puedes comprar elementos html con tus puntos'}]
+   puntos=0;
+
+
+    
   constructor() { 
  //inicialización
-    this.socket.on('connect', ()=>{
-      console.log("conectado")}
-      )
+      this.socket = io(this.url);
+      this.socket.on('connect', ()=>{
+        console.log("conectado")
+        })
   }
   //fin del constructor 
 }
