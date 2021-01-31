@@ -1,1 +1,6 @@
-<p>home works!</p>
+
+<div id="mainGrid">
+    <div *ngFor="let row of rows; index as j" class="row">
+        <app-cell *ngFor="let column of row; index as i" [ngStyle]="obtenerEstilos()" class="cell" (mouseover)="sendChange(j, i, datos)" [item]=column (mouseout)="sendChange(j, i, datos)">{{i}}</app-cell>
+    </div>
+</div>

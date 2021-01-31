@@ -1,0 +1,15 @@
+#mainGrid{
+    position: fixed;
+    width: 60vw;
+    height: 60vh;
+    margin-left: 25vw;
+}
+.row{
+    position: relative
+}
+.cell{
+    background-color: gray;
+    border: solid black 2px;
+    float: left;
+     
+}
