@@ -6,8 +6,9 @@ import * as io from 'socket.io-client'
   providedIn: 'root'
 })
 export class WebSocketService {
-  
+
   url='https://modular-0-0-1.glitch.me/';
+  //probando comit
    socket : any;
    elementsGroup:any = [];
    id : any;
@@ -16,13 +17,13 @@ export class WebSocketService {
    puntos=0;
 
 
-    
-  constructor() { 
+
+  constructor() {
  //inicialización
       this.socket = io(this.url);
       this.socket.on('connect', ()=>{
         console.log("conectado")
         })
   }
-  //fin del constructor 
+  //fin del constructor
 }
