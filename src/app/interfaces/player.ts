@@ -1,6 +1,7 @@
 export interface Player {
     'status': {
         'health':number,
-        'name': string
+        'name': string,
+        'id':any
     }
 }

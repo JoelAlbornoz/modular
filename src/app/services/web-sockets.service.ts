@@ -1,4 +1,4 @@
-import { Injectable, ɵɵresolveBody } from '@angular/core';
+import { Injectable, ɵɵresolveBody, NgZone } from '@angular/core';
 import * as io from 'socket.io-client'
 
 
@@ -6,23 +6,36 @@ import * as io from 'socket.io-client'
   providedIn: 'root'
 })
 export class WebSocketService {
-  
+  state:any;
   url='https://modular-0-0-1.glitch.me/';
-   socket : any;
-   elementsGroup:any = [];
-   id : any;
-   htmlEls =[]
-   messages= [{nombre:'administrador', mensaje:'intenta moverte con las flechas'},{nombre:'administrador', mensaje:'puedes comprar elementos html con tus puntos'}]
-   puntos=0;
+  socket : any;
+  id : any;
+  rows: any;
+  
 
 
-    
-  constructor() { 
+  spawn(){
+    this.socket.emit('spawn')
+  }
+
+  constructor(private zone : NgZone) { 
  //inicialización
       this.socket = io(this.url);
       this.socket.on('connect', ()=>{
         console.log("conectado")
         })
+        
+      this.socket.on('sendState',(data)=>{
+        this.state = data.estado;
+        this.id = data.id;
+        console.log(this.state)
+        console.log('cargado')
+      })
+      this.socket.on('otro',(data)=>{
+        console.log('cargado')
+      })
   }
-  //fin del constructor 
+  //fin del constructor
+  
+  
 }
