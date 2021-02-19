@@ -23,9 +23,17 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.fetch.conectar()
   }
-  obtenerEstilos(){
-    return {'width': (50/this.webSocketService.state.grilla.length ) +'vw',
-            'height': (50/this.webSocketService.state.grilla[0].length ) +'vh' }
+  obtenerEstilos(i, j){
+    return {'width': (50/this.socket.state.grilla.length ) +'vw',
+            'height': (50/this.socket.state.grilla[0].length ) +'vh',
+            'background-color': 'gray',
+            'margin':'0px',
+            'padding': '0px',
+            'position': 'absolute',
+            'left': (i*(50/this.socket.state.grilla.length)) +'vw',
+            'top' : (j*(50/this.socket.state.grilla[0].length)) +'vh',
+            'border' : 'solid black 1px'
+          }
   }
   sendChange(j, i, datos){
   //Enviar un evento de cambio al servidor, esperar feedback a travéz del servicio
@@ -41,23 +49,26 @@ export class HomeComponent implements OnInit {
     e = e || window.event;
 
     if (e.keyCode == '13') {
-      console.log(this.webSocketService.rows)
+      console.log(this.webSocketService.state.grilla)
     }
     else if (e.keyCode == '38') {
       // up arrow
       console.log('up')
+      this.webSocketService.move('up')
     }
     else if (e.keyCode == '40') {
       // down arrow
       console.log('down')
+      this.webSocketService.move('down')
     }
     else if (e.keyCode == '37') {
       // left arrow
       console.log('left')
+      this.webSocketService.move('left')
     }
     else if (e.keyCode == '39') {
       console.log('right')
-
+      this.webSocketService.move('right')
     }
   }
 }

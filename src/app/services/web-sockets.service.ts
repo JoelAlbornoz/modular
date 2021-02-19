@@ -18,6 +18,11 @@ export class WebSocketService {
     this.socket.emit('spawn')
   }
 
+  move(dir){
+    this.socket.emit('move', {
+      dir: dir,
+    })
+  }
   constructor(private zone : NgZone) { 
  //inicialización
       this.socket = io(this.url);
